@@ -1,7 +1,12 @@
 function ChoiceItem(props) {
+  let choice = props.choice;
+
   return (
-    <li className='list-group-item'>
-      {props.choice.text}
-    </li>
+    <div className='form-check'>
+      <label className='form-check-label'>
+        <input type='radio' class='form-check-input' name='choice[id]' value='{choice.id}'/>
+        {choice.text}
+      </label>
+    </div>
   )
 }
