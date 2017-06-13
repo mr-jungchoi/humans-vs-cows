@@ -5,10 +5,17 @@ class QuestionCard extends React.Component {
 
   render() {
     return(
-      <div className='card' style={width: '500px'}>
+      <div className='card question-card'>
         <div className='card-block'>
-          <h3 class='card-title'> {this.props.question.text} </h3>
+          <h3 className='card-title'> {this.props.question.text} </h3>
         </div>
+        <ul className='list-group list-group-flush'>
+          {this.props.choices.map(function(choice, i) {
+            return (
+              <ChoiceItem key={i} choice={choice} />
+            )
+          })}
+        </ul>
       </div>
     )
   }
