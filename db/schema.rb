@@ -25,19 +25,17 @@ ActiveRecord::Schema.define(version: 20170613173653) do
   end
 
   create_table "choices", force: :cascade do |t|
-    t.string   "text",        null: false
-    t.integer  "question_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["question_id"], name: "index_choices_on_question_id", using: :btree
+    t.string   "text",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "choices_questions", force: :cascade do |t|
-    t.boolean  "is_correct"
+    t.boolean  "is_correct",  default: false
     t.integer  "choice_id"
     t.integer  "question_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.index ["choice_id"], name: "index_choices_questions_on_choice_id", using: :btree
     t.index ["question_id"], name: "index_choices_questions_on_question_id", using: :btree
   end
@@ -56,7 +54,6 @@ ActiveRecord::Schema.define(version: 20170613173653) do
 
   add_foreign_key "answers", "choices_questions"
   add_foreign_key "answers", "survey_rounds"
-  add_foreign_key "choices", "questions"
   add_foreign_key "choices_questions", "choices"
   add_foreign_key "choices_questions", "questions"
 end
