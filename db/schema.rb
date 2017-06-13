@@ -10,20 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170612180656) do
+ActiveRecord::Schema.define(version: 20170613173653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
-    t.boolean  "is_correct",      null: false
     t.integer  "survey_round_id"
-    t.integer  "question_id"
-    t.integer  "choice_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["choice_id"], name: "index_answers_on_choice_id", using: :btree
-    t.index ["question_id"], name: "index_answers_on_question_id", using: :btree
+    t.integer  "choices_question_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.index ["choices_question_id"], name: "index_answers_on_choices_question_id", using: :btree
     t.index ["survey_round_id"], name: "index_answers_on_survey_round_id", using: :btree
   end
 
@@ -33,6 +30,16 @@ ActiveRecord::Schema.define(version: 20170612180656) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["question_id"], name: "index_choices_on_question_id", using: :btree
+  end
+
+  create_table "choices_questions", force: :cascade do |t|
+    t.boolean  "is_correct"
+    t.integer  "choice_id"
+    t.integer  "question_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["choice_id"], name: "index_choices_questions_on_choice_id", using: :btree
+    t.index ["question_id"], name: "index_choices_questions_on_question_id", using: :btree
   end
 
   create_table "questions", force: :cascade do |t|
@@ -47,8 +54,9 @@ ActiveRecord::Schema.define(version: 20170612180656) do
     t.datetime "updated_at",      null: false
   end
 
-  add_foreign_key "answers", "choices"
-  add_foreign_key "answers", "questions"
+  add_foreign_key "answers", "choices_questions"
   add_foreign_key "answers", "survey_rounds"
   add_foreign_key "choices", "questions"
+  add_foreign_key "choices_questions", "choices"
+  add_foreign_key "choices_questions", "questions"
 end
