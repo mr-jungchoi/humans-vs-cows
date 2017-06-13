@@ -1,5 +1,6 @@
 class Answer < ActiveRecord::Base
   belongs_to :survey_round
-  belongs_to :question
-  belongs_to :choice
+  has_one :choices_question
+  has_one :choice, through: :choices_question
+  has_one :question, through: :choices_question
 end
