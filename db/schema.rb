@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20170614205904) do
   end
 
   create_table "survey_rounds", force: :cascade do |t|
-    t.integer  "percent_correct", null: false
+    t.integer  "percent_correct"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end

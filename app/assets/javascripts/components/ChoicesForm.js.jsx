@@ -5,7 +5,7 @@ class ChoicesForm extends React.Component {
       choices: this.props.choices,
       questionId: this.props.question.id,
       selectionId: '',
-      surveyRoundId: this.props.survey_round.id
+      surveyRoundId: this.props.surveyRoundId
     };
 
     this.handleChange = this.handleChange.bind(this);
