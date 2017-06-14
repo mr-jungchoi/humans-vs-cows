@@ -1,9 +1,9 @@
 class QuestionsController < ApplicationController
-  def show
-    @question = Question.find_by_id(params[:id])
+  def index
+    @question = Question.first
     @choices = @question.choices
 
-    # Need to add survey round id
-    # @survey_round = @question.survey_round.id
+    session[:survey_round_id] = SurveyRound.create().id
+    session[:question_id] = @question.id
   end
 end

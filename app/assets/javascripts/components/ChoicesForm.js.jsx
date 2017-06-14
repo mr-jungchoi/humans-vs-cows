@@ -5,7 +5,7 @@ class ChoicesForm extends React.Component {
       choices: this.props.choices,
       questionId: this.props.question.id,
       selectionId: '',
-      surveyRoundId: ''
+      surveyRoundId: this.props.survey_round.id
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -19,10 +19,10 @@ class ChoicesForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     $.ajax({
-      url: '/answers',
+      url: '/user_selections',
       method: 'post',
       data: {
-        'answer': {
+        'user_selection': {
           'question_id': this.state.questionId,
           'choice_id': this.state.selectionId,
           'survey_round_id': this.state.surveyRoundId
