@@ -1,35 +1,40 @@
 class ChoicesForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {choice_id: ''};
+    this.state = {
+      choices: this.props.choices,
+      questionId: this.props.question.id,
+      choiceId: '',
+      surveyRoundId: ''
+    };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    this.setState({choice_id: event.target.value});
+    this.setState({choiceId: event.target.value});
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    $.ajax({
-      url: '/choices_questions',
-      method: 'post',
-      data: {
-
-      }
-    })
+  render() {
+    return (
+      <form action='/choices_questions' method='post'>
+        <fieldset className='form-group'>
+          {this.state.choices.map(function(choice) {
+            return (
+              <div className='form-check'>
+                <label className='form-check-label'>
+                  <input type='radio' className='form-check-input'
+                    name='choiceId' value={choice.id}
+                    checked={this.state.choiceId == choice.id}
+                    onChange={this.handleChange} />
+                  {choice.text}
+                </label>
+              </div>
+            );
+          }, this)}
+        </fieldset>
+        <button type='submit' className='btn btn-primary'>Submit</button>
+      </form>
+    );
   }
-  return (
-    <form action='/choices_questions' method='post'>
-      <input type='hidden' name='question[id]' value='{this.props.question.id}'/>
-      <fieldset className='form-group'>
-        {this.props.choices.map(function(choice, i) {
-          return <ChoiceItem key={i} choice={choice} />
-        })}
-      </fieldset>
-      <button type='submit' class='btn btn-primary'>Submit</button>
-    </form>
-  )
 }
