@@ -3,7 +3,7 @@ class QuestionCard extends React.Component {
     super(props);
     this.state = {question: this.props.question,
                   choices: this.props.choices,
-                  survey_round: this.props.survey_round}
+                  surveyRoundId: this.props.surveyRoundId}
   }
 
   render() {
@@ -16,7 +16,7 @@ class QuestionCard extends React.Component {
             </div>
             <ChoicesForm choices={this.state.choices}
               question={this.state.question}
-              survey_round={this.state.survey_round} />
+              surveyRoundId={this.state.surveyRoundId} />
           </div>
         </div>
       </div>

@@ -4,7 +4,10 @@ function ChoiceItem(props) {
   return (
     <div className='form-check'>
       <label className='form-check-label'>
-        <input type='radio' class='form-check-input' name='choice[id]' value='{choice.choices_question_id}'/>
+        <input type='radio' className='form-check-input'
+          name='choiceId' value={choice.id}
+          checked={this.state.selectionId == choice.id}
+          onChange={this.handleChange} />
         {choice.text}
       </label>
     </div>

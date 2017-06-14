@@ -4,8 +4,8 @@ class ChoicesForm extends React.Component {
     this.state = {
       choices: this.props.choices,
       questionId: this.props.question.id,
+      surveyRoundId: this.props.surveyRoundId,
       selectionId: '',
-      surveyRoundId: this.props.surveyRoundId
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -23,7 +23,6 @@ class ChoicesForm extends React.Component {
       method: 'post',
       data: {
         'user_selection': {
-          'question_id': this.state.questionId,
           'choice_id': this.state.selectionId,
           'survey_round_id': this.state.surveyRoundId
         }
@@ -39,7 +38,7 @@ class ChoicesForm extends React.Component {
         <fieldset className='form-group'>
           {this.state.choices.map(function(choice) {
             return (
-              <div className='form-check'>
+              <div key={choice.id} className='form-check'>
                 <label className='form-check-label'>
                   <input type='radio' className='form-check-input'
                     name='choiceId' value={choice.id}

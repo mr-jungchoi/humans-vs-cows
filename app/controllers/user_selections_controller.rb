@@ -1,11 +1,13 @@
 class UserSelectionsController < ApplicationController
   def create
-    user_selection = UserSelection.create(user_selection_params)
+    user_selection = UserSelection.new(user_selection_params)
 
-    if user_selection
+    if user_selection.save
       session[:question_id] += 1
+      question = Question.find_by_id(session[:question_id])
+      next_question = {question: question, choices: question.choices}
 
-      @question = Question.find_by_id(session[:question_id])
+      render json: next_question
     end
   end
 
