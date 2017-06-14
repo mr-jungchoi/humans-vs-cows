@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
   def create
-    choices_question = ChoicesQuestion.where(
+    choices_question = ChoicesQuestion.find_by(
       question_id: answer_params[:question_id],
       choice_id: answer_params[:choice_id]
     )

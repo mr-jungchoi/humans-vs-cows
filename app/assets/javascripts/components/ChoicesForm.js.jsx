@@ -4,20 +4,38 @@ class ChoicesForm extends React.Component {
     this.state = {
       choices: this.props.choices,
       questionId: this.props.question.id,
-      choiceId: '',
+      selectionId: '',
       surveyRoundId: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    this.setState({choiceId: event.target.value});
+    this.setState({selectionId: event.target.value});
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    $.ajax({
+      url: '/answers',
+      method: 'post',
+      data: {
+        'answer': {
+          'question_id': this.state.questionId,
+          'choice_id': this.state.selectionId,
+          'survey_round_id': this.state.surveyRoundId
+        }
+      }
+    }).done(() => {
+      console.log('GREAT SUCCESS!')
+    })
   }
 
   render() {
     return (
-      <form action='/choices_questions' method='post'>
+      <form onSubmit={this.handleSubmit}>
         <fieldset className='form-group'>
           {this.state.choices.map(function(choice) {
             return (
@@ -25,7 +43,7 @@ class ChoicesForm extends React.Component {
                 <label className='form-check-label'>
                   <input type='radio' className='form-check-input'
                     name='choiceId' value={choice.id}
-                    checked={this.state.choiceId == choice.id}
+                    checked={this.state.selectionId == choice.id}
                     onChange={this.handleChange} />
                   {choice.text}
                 </label>
