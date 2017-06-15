@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :survey_round, only: [:show]
 
   get "questions/next" => "questions#next"
+  get "facts" => "facts#index"
 
   root "home#index"
 end

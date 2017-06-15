@@ -13,6 +13,7 @@ class ChoicesForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    // Check to make sure a selection was made
     $.ajax({
       url: '/user_selections',
       method: 'post',
