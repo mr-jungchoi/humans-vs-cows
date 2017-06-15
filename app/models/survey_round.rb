@@ -1,3 +1,3 @@
 class SurveyRound < ApplicationRecord
-  has_many :answers
+  has_many :user_selections
 end

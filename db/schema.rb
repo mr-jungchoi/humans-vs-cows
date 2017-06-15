@@ -10,34 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170613173653) do
+ActiveRecord::Schema.define(version: 20170614205904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "answers", force: :cascade do |t|
-    t.integer  "survey_round_id"
-    t.integer  "choices_question_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.index ["choices_question_id"], name: "index_answers_on_choices_question_id", using: :btree
-    t.index ["survey_round_id"], name: "index_answers_on_survey_round_id", using: :btree
-  end
-
   create_table "choices", force: :cascade do |t|
-    t.string   "text",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "choices_questions", force: :cascade do |t|
+    t.string   "text",                        null: false
     t.boolean  "is_correct",  default: false
-    t.integer  "choice_id"
     t.integer  "question_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.index ["choice_id"], name: "index_choices_questions_on_choice_id", using: :btree
-    t.index ["question_id"], name: "index_choices_questions_on_question_id", using: :btree
+    t.index ["question_id"], name: "index_choices_on_question_id", using: :btree
   end
 
   create_table "questions", force: :cascade do |t|
@@ -47,13 +31,28 @@ ActiveRecord::Schema.define(version: 20170613173653) do
   end
 
   create_table "survey_rounds", force: :cascade do |t|
-    t.integer  "percent_correct", null: false
+    t.integer  "percent_correct"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
-  add_foreign_key "answers", "choices_questions"
-  add_foreign_key "answers", "survey_rounds"
-  add_foreign_key "choices_questions", "choices"
-  add_foreign_key "choices_questions", "questions"
+  create_table "surveys", force: :cascade do |t|
+    t.string   "title",       null: false
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "user_selections", force: :cascade do |t|
+    t.integer  "survey_round_id"
+    t.integer  "choice_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["choice_id"], name: "index_user_selections_on_choice_id", using: :btree
+    t.index ["survey_round_id"], name: "index_user_selections_on_survey_round_id", using: :btree
+  end
+
+  add_foreign_key "choices", "questions"
+  add_foreign_key "user_selections", "choices"
+  add_foreign_key "user_selections", "survey_rounds"
 end
