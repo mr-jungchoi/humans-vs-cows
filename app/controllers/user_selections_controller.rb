@@ -3,8 +3,9 @@ class UserSelectionsController < ApplicationController
     user_selection = UserSelection.create(user_selection_params)
     current_question = Question.find_by_id(session[:question_id])
 
-    if user_selection && current_question == Question.last
-      redirect_to "/facts"
+    if user_selection && current_question.id == Question.last.id
+      # Redirect to facts page
+      render js: "window.location = '/facts'"
     elsif user_selection
       session[:question_id] += 1
     else
