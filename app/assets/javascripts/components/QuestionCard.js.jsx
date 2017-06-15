@@ -4,6 +4,17 @@ class QuestionCard extends React.Component {
     this.state = {question: this.props.question,
                   choices: this.props.choices,
                   surveyRoundId: this.props.surveyRoundId}
+
+    this.getNextQuestion = this.getNextQuestion.bind(this);
+  }
+
+  getNextQuestion() {
+    $.ajax({
+      url: '/questions/next',
+      method: 'get'
+    }).done(response => {
+      this.setState(response)
+    })
   }
 
   render() {
@@ -15,7 +26,8 @@ class QuestionCard extends React.Component {
               <h3 className='card-title'> {this.state.question.text} </h3>
             </div>
             <ChoicesForm choices={this.state.choices}
-              surveyRoundId={this.state.surveyRoundId} />
+              surveyRoundId={this.state.surveyRoundId}
+              onUserSelection={this.getNextQuestion} />
           </div>
         </div>
       </div>
