@@ -6,7 +6,7 @@ class AdminController < ApplicationController
     #   {..}
     # ]
     @questions = []
-    Question.all.each do |question|
+    Question.order(:id).each do |question|
       @questions.push({id: question.id, text: question.text, choices: question.choices})
     end
   end

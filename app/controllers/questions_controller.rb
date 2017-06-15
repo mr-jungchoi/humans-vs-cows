@@ -19,10 +19,16 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    
+    question = Question.find_by_id(params[:id])
+
+    if question.update_attributes(question_params)
+      # send back status 200
+      head status: 200
+    else
+      # send back status 500
+      head status: 500
+    end
   end
-
-
 
   def next
     question = Question.find_by_id(session[:question_id])
@@ -37,4 +43,9 @@ class QuestionsController < ApplicationController
     session[:survey_round_id] = nil
     redirect_to "/questions"
   end
+
+  private
+    def question_params
+      params.require(:question).permit(:text)
+    end
 end
