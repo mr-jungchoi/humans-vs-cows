@@ -15,7 +15,6 @@ class QuestionCard extends React.Component {
               <h3 className='card-title'> {this.state.question.text} </h3>
             </div>
             <ChoicesForm choices={this.state.choices}
-              question={this.state.question}
               surveyRoundId={this.state.surveyRoundId} />
           </div>
         </div>
