@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   get "questions/next" => "questions#next"
   get "facts" => "facts#index"
+  get "questions/restart" => "questions#restart"
 
   root "home#index"
 end
