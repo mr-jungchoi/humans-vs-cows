@@ -1,2 +1,0 @@
-class SurveryRoundController < ApplicationController
-end
