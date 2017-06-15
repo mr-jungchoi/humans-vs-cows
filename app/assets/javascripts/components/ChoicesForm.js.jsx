@@ -1,9 +1,7 @@
 class ChoicesForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      selectionId: ''
-    };
+    this.state = {selectionId: ''};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,8 +23,10 @@ class ChoicesForm extends React.Component {
         }
       }
     }).done(() => {
-      console.log('GREAT SUCCESS!')
-    })
+      // Get next question
+      this.props.onUserSelection();
+      this.setState({selectionId: ''});
+    });
   }
 
   render() {

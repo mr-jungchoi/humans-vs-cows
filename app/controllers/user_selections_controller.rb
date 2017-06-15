@@ -3,11 +3,10 @@ class UserSelectionsController < ApplicationController
     user_selection = UserSelection.new(user_selection_params)
 
     if user_selection.save
+      # Include conditional to see if there is no more questions
       session[:question_id] += 1
-      question = Question.find_by_id(session[:question_id])
-      next_question = {question: question, choices: question.choices}
-
-      render json: next_question
+    else
+      # Do something else
     end
   end
 
