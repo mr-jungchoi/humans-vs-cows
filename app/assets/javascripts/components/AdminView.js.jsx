@@ -7,8 +7,8 @@ class AdminView extends React.Component {
   render() {
     return(
       <div>
-        {this.state.questions.map(function(question) {
-          return <AdminQuestionCard key={question.id} question={question} />
+        {this.state.questions.map(function(question, i) {
+          return <AdminQuestionCard key={question.id} order_position={i} question={question} />
         })}
       </div>
     );

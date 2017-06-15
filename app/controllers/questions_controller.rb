@@ -18,11 +18,11 @@ class QuestionsController < ApplicationController
     @survey_round_id = session[:survey_round_id]
   end
 
-  def create
-
+  def update
+    
   end
 
-  
+
 
   def next
     question = Question.find_by_id(session[:question_id])

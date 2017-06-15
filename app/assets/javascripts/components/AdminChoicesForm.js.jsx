@@ -2,29 +2,16 @@ class AdminChoicesForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleChange = this.handleChange.bind(this);
+    this.saveChoiceText = this.saveChoiceText.bind(this);
+    this.saveChoiceCorrectness = this.saveChoiceCorrectness.bind(this);
   }
 
-  handleChange(event) {
-    console.log("Something changed");
+  saveChoiceText(event) {
+    console.log("Choice text changed");
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    // $.ajax({
-    //   url: '/user_selections',
-    //   method: 'put',
-    //   data: {
-    //     'user_selection': {
-    //       'choice_id': this.state.selectionId,
-    //       'survey_round_id': this.props.surveyRoundId
-    //     }
-    //   }
-    // }).done(() => {
-    //   // Get next question
-    //   this.props.onUserSelection();
-    //   this.setState({selectionId: ''});
-    // });
+  saveChoiceCorrectness(event) {
+    console.log("Correctness changed")
   }
 
   render() {
@@ -35,12 +22,12 @@ class AdminChoicesForm extends React.Component {
             <li key={choice.id} className='choice-list-item list-group-item'>
               <div className='form-group'>
                 <label> Choice {i} </label>
-                <input type='text' className='form-control' value={choice.text}/>
+                <input onChange={this.saveChoiceText} type='text' className='form-control' value={choice.text}/>
               </div>
               <div  className='form-check pull-right'>
                 <label className='form-check-label'>
                   Correct
-                  <input type='checkbox' className='form-check-input'
+                  <input onChange={this.saveChoiceCorrectness} type='checkbox' className='form-check-input'
                     name='choiceId' value={choice.id} />
                 </label>
               </div>
