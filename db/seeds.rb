@@ -1,9 +1,9 @@
 questions_text = [
-  "What sound do cows make?",
-  "Who eats more, cows or humans?",
-  "We contribute to climate change more than any other species on Earth",
-  "Most of the farmland in America is used to grow food for...",
-  "Meat is a key component to a healthy diet"
+  "What sound does a cow make?",
+  "What species consumes the most food on Earth?",
+  "Climate change is most affected by...",
+  "American's eat __ times more meat than people in other countries",
+  "Meat is a necessary component to a healthy diet"
 ]
 
 questions = []
@@ -13,11 +13,11 @@ questions_text.each do |text|
 end
 
 choices_arrays = [
-  [{text: "ruff"}, {text: "meow"}, {text: "moo", is_correct: true}, {text: "hello"}],
-  [{text: "humans"}, {text: "cows", is_correct: true}, {text: "both are equal"}],
-  [{text: "humans"}, {text: "cows", is_correct: true}, {text: "beavers"}],
-  [{text: "humans"}, {text: "cows", is_correct: true}, {text: "neither"}],
-  [{text: "true"}, {text: "false", is_correct: true}, {text: "idk"}]
+  [{text: "woof"}, {text: "kakao"}, {text: "moo", is_correct: true}, {text: "toot", is_correct: true}],
+  [{text: "humans"}, {text: "cows", is_correct: true}, {text: "chickens"}, {text: "cows and humans are equal"}],
+  [{text: "beef and dairy production", is_correct: true}, {text: "transportation"}, {text: "burning fossil fuels for energy"}, {text: "cats"}],
+  [{text: "0.5"}, {text: "1"}, {text: "2"}, {text: "3", is_correct: true}],
+  [{text: "true"}, {text: "false", is_correct: true}, {text: "tofu sucks"}]
 ]
 
 5.times do |i|
