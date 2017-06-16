@@ -25,9 +25,11 @@ class QuestionCard extends React.Component {
             <div className='card-block'>
               <h3 className='card-title'> {this.state.question.text} </h3>
             </div>
-            <ChoicesForm choices={this.state.choices}
+            <ChoicesForm
+              choices={this.state.choices}
               surveyRoundId={this.state.surveyRoundId}
-              onUserSelection={this.getNextQuestion} />
+              onUserSelection={this.getNextQuestion}
+            />
           </div>
         </div>
       </div>

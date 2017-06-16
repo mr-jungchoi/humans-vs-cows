@@ -32,9 +32,11 @@ class QuestionsController < ApplicationController
 
   def next
     question = Question.find_by_id(session[:question_id])
-    next_question = {question: question,
-                     choices: question.choices,
-                     surveyRoundId: session[:survey_round_id]}
+    next_question = {
+      question: question,
+      choices: question.choices,
+      surveyRoundId: session[:survey_round_id]
+    }
 
     render json: next_question
   end
@@ -42,6 +44,12 @@ class QuestionsController < ApplicationController
   def restart
     session[:survey_round_id] = nil
     redirect_to "/questions"
+  end
+
+  def fetch
+    questions = {questions: Question.all}
+
+    render json: questions
   end
 
   private

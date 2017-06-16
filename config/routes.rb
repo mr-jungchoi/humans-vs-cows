@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   resources :choices, only: [:create, :update, :destroy]
 
   get "questions/next" => "questions#next"
-  get "facts" => "facts#index"
   get "questions/restart" => "questions#restart"
+  get "questions/fetch" => "questions#fetch"
+  get "facts" => "facts#index"
   get "admin" => "admin#index"
 
   root "home#index"

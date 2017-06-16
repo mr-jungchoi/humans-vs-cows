@@ -15,11 +15,13 @@ class AdminChoicesForm extends React.Component {
   }
 
   handleClick() {
+    var question_id = this.state.choices[1].question_id;
     $.ajax({
       url: '/choices',
       method: 'post',
+      data: {question_id: question_id}
     }).done(response => {
-      this.setState({response})
+      this.setState({ response })
     })
   }
 
