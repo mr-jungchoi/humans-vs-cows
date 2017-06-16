@@ -1,4 +1,15 @@
 class ChoicesController < ApplicationController
+  def create
+    # If request is ajax
+    if request.xhr
+      Choice.create
+
+      render json: Choice.all
+    else
+      # Do something else
+    end
+  end
+
   def update
     choice = Choice.find_by_id(params[:id])
 
