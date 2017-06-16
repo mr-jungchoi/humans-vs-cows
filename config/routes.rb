@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :questions, except: [:show, :new, :edit]
   resources :user_selections, only: [:create]
-  resources :choices, only: [:update]
+  resources :choices, only: [:create, :update, :destroy]
 
   get "questions/next" => "questions#next"
   get "facts" => "facts#index"
