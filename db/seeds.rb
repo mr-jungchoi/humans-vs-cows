@@ -13,15 +13,15 @@ questions_text.each do |text|
 end
 
 choices_arrays = [
-  ["ruff", "meow", "moo", "hello"],
-  ["humans", "cows", "both are equal"],
-  ["humans", "cows", "beavers"],
-  ["humans", "cows", "neither"],
-  ["true", "false", "idk"]
+  [{text: "ruff"}, {text: "meow"}, {text: "moo", is_correct: true}, {text: "hello"}],
+  [{text: "humans"}, {text: "cows", is_correct: true}, {text: "both are equal"}],
+  [{text: "humans"}, {text: "cows", is_correct: true}, {text: "beavers"}],
+  [{text: "humans"}, {text: "cows", is_correct: true}, {text: "neither"}],
+  [{text: "true"}, {text: "false", is_correct: true}, {text: "idk"}]
 ]
 
 5.times do |i|
-  choices_arrays[i].each do |text|
-    questions[i].choices.push(Choice.create(text: text))
+  choices_arrays[i].each do |choice|
+    questions[i].choices.push(Choice.create(choice))
   end
 end

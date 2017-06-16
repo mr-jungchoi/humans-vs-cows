@@ -1,1 +1,10 @@
-<%= react_component 'QuestionCard', {question: @question, choices: @choices, survey_round_id: @survey_round_id} %>
+<% choices = @question.choices %>
+
+<%=
+  react_component "QuestionCard",
+    {
+      question: @question,
+      choices: choices,
+      survey_round_id: session[:survey_round_id]
+    }
+%>
