@@ -18,7 +18,7 @@ class AdminChoiceCorrectness extends React.Component {
   }
 
   updateChoiceCorrectness(event) {
-    const is_correct = event.target.value;
+    const is_correct = !event.target.value;
     this.setState({ is_correct });
     clearTimeout(this.timeoutId);
     this.timeoutId = setTimeout(this.saveChoiceCorrectness.bind(this, is_correct), 500);
@@ -35,14 +35,33 @@ class AdminChoiceCorrectness extends React.Component {
     })
   }
 
+  var checkbox;
+  if (this.state.is_correct) {
+    checkbox = <CheckedBox onCheck={this.updateChoiceCorrectness} is_correct={this.state.is_correct} />
+  } else {
+    checkbox = <UncheckedBox onCheck={this.updateChoiceCorrectness} is_correct={this.state.is_correct} />
+  };
+
   render() {
     return(
       <div  className='form-check pull-right'>
         <label className='form-check-label'>
           Correct
-          <input onChange={this.updateChoiceCorrectness} type='checkbox' className='form-check-input' value={this.state.is_correct} />
+          {checkbox}
         </label>
       </div>
     )
   }
+}
+
+function CheckedBox(props) {
+  return(
+    <input onChange={this.props.onCheck} type='checkbox' className='form-check-input' value={this.props.is_correct} checked/>
+  )
+}
+
+function UncheckedBox(props) {
+  return(
+    <input onChange={this.props.onCheck} type='checkbox' className='form-check-input' value={this.props.is_correct}/>
+  )
 }

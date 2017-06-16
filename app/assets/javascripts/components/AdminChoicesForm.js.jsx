@@ -9,9 +9,9 @@ class AdminChoicesForm extends React.Component {
       <ul className='list-group list-group-flush'>
         {this.props.choices.map(function(choice, i) {
           return (
-            <li className='choice-list-item list-group-item'>
-              <AdminChoiceText key={choice.id} order_position={i} choice={choice} />
-              <AdminChoiceCorrectness key={choice.id} order_position={i} choice={choice} />
+            <li key={choice.id} className='choice-list-item list-group-item'>
+              <AdminChoiceText order_position={i} choice={choice} />
+              <AdminChoiceCorrectness order_position={i} choice={choice} />
             </li>
           );
         }, this)}
